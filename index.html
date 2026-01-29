@@ -4,179 +4,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kisah Si Cimot by Itrah</title>
+
 <style>
-body { margin:0; overflow:hidden; background:black; font-family:sans-serif; color:white; }
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at bottom, #0b0f2a 0%, #000 70%);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+}
 
-/* Nebula galaksi */
+/* NEBULA BACKGROUND */
 .nebula {
-  position:absolute;
-  width:200%; height:200%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(120,0,255,0.25), transparent 40%),
-    radial-gradient(circle at 70% 60%, rgba(0,200,255,0.2), transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(255,0,150,0.2), transparent 40%);
-  animation: nebulaMove 60s linear infinite alternate;
-  z-index:0;
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: url("https://i.imgur.com/9QZ7Z6F.png") center/cover no-repeat;
+  opacity: 0.35;
+  animation: nebulaMove 60s linear infinite;
 }
+
 @keyframes nebulaMove {
-  from { transform: translate(-10%, -10%) scale(1); }
-  to { transform: translate(-20%, -15%) scale(1.2); }
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
 }
 
-/* Kotak teks */
-#textBox {
-  position:absolute;
-  top:50%; width:100%;
-  text-align:center;
-  transform:translateY(-50%);
-  z-index:3;
-  animation:fadeIn 3s ease forwards;
-}
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-/* Area adegan */
-.scene {
-  position:absolute;
-  width:100%; height:100%;
-  display:none;
-  z-index:2;
+/* STARS */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite alternate;
 }
 
-/* Kasur bulat biru */
-.bed {
-  width:160px; height:160px;
-  background: radial-gradient(circle, #3b82f6, #1e3a8a);
-  border-radius:50%;
-  position:absolute;
-  bottom:15%; left:20%;
-  box-shadow:0 0 20px #60a5fa;
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
 }
 
-/* Cimot (kucing) */
-.cat {
-  width:80px; height:80px;
-  background:linear-gradient(135deg, white, #bbb, #333);
-  border-radius:50% 50% 45% 45%;
-  position:absolute;
-  bottom:22%; left:23%;
-}
-.cat::before,.cat::after{
-  content:''; position:absolute; width:20px; height:20px;
-  background:inherit; border-radius:50%; top:-10px;
-}
-.cat::before{left:10px} .cat::after{right:10px}
-
-/* Itrah */
-.itrah {
-  position:absolute;
-  bottom:18%; right:20%;
-  width:70px; height:120px;
-  background:linear-gradient(#fce7f3,#f9a8d4);
-  border-radius:35px;
-}
-.itrah::before {
-  content:'';
-  position:absolute;
-  width:70px; height:50px;
-  background:#fbcfe8;
-  border-radius:50%;
-  top:-30px;
+/* PLANETS */
+.planet {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-size: cover;
+  animation: float 10s ease-in-out infinite alternate;
+  box-shadow: 0 0 30px rgba(255,255,255,0.3);
 }
 
-/* Burung kecil */
-.bird-baby {
-  width:30px; height:30px;
-  background:#a16207;
-  border-radius:50%;
-  position:absolute;
-  bottom:28%; right:26%;
+/* FLOATING ANIMATION */
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-15px); }
 }
 
-/* Burung dewasa */
-.bird {
-  width:40px; height:40px;
-  background:linear-gradient(#8b5e3c,#fff);
-  border-radius:50%;
-  position:absolute;
-  bottom:40%; left:50%;
-  animation: fly 3s ease-in-out infinite alternate;
+/* TITLE */
+.title {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 30%;
+  font-size: 2em;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px #fff;
+  opacity: 0;
+  animation: fadeInTitle 4s forwards;
 }
-@keyframes fly { from{transform:translateY(0)} to{transform:translateY(-20px)} }
+
+@keyframes fadeInTitle {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ADEGAN CIMOT */
+.cimot {
+  position: absolute;
+  width: 100px;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: url("https://i.imgur.com/L5Yw3UV.png") center/contain no-repeat;
+  height: 100px;
+  opacity: 0;
+  animation: showCimot 2s forwards 5s; /* muncul 5 detik */
+}
+
+@keyframes showCimot {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* BURUNG IPIT */
+.ipit {
+  position: absolute;
+  width: 60px;
+  bottom: 20%;
+  left: 70%;
+  transform: translateX(-50%);
+  background: url("https://i.imgur.com/eZkTxQx.png") center/contain no-repeat;
+  height: 60px;
+  opacity: 0;
+  animation: showIpit 2s forwards 8s; /* muncul 8 detik */
+}
+
+@keyframes showIpit {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* METEOR */
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(white, transparent);
+  transform: rotate(45deg);
+  animation: meteorFall 5s linear infinite;
+}
+
+@keyframes meteorFall {
+  from { top: -60px; left: 80%; opacity: 1; }
+  to { top: 100%; left: 20%; opacity: 0; }
+}
+
 </style>
 </head>
 <body>
 
 <div class="nebula"></div>
 
-<div id="textBox">
-  <h1>✨ Kisah Si Cimot by Itrah ✨</h1>
-  <p>Sebuah cerita hangat di sudut kecil alam semesta…</p>
-</div>
+<!-- PLANETS -->
+<div class="planet" style="top:10%; left:15%; background-image:url('https://i.imgur.com/6X4KQ8K.jpg');"></div>
+<div class="planet" style="top:50%; left:70%; width:100px; height:100px; background-image:url('https://i.imgur.com/4iQZ6kG.jpg'); animation-duration:12s;"></div>
 
-<!-- ADEGAN 1: Cimot tidur -->
-<div id="scene1" class="scene">
-  <div class="bed"></div>
-  <div class="cat"></div>
-</div>
-
-<!-- ADEGAN 2: Itrah & bayi burung -->
-<div id="scene2" class="scene">
-  <div class="itrah"></div>
-  <div class="bird-baby"></div>
-  <div class="cat" style="left:40%; bottom:22%;"></div>
-</div>
-
-<!-- ADEGAN 3: Burung dewasa -->
-<div id="scene3" class="scene">
-  <div class="cat" style="left:30%; bottom:20%;"></div>
-  <div class="itrah" style="right:25%;"></div>
-  <div class="bird"></div>
-</div>
-
-<!-- ADEGAN 4: Ending -->
-<div id="scene4" class="scene">
-  <div id="textBox" style="top:55%;">
-    <h1>Persahabatan Mereka Tumbuh Bersama 💫</h1>
-    <p>Cimot, Ipit, dan Itrah menjalani hari dengan cinta dan tawa.</p>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- STARS -->
 <script>
-let scene3D = new THREE.Scene();
-let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-let renderer = new THREE.WebGLRenderer({ alpha:true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-camera.position.z = 5;
-
-let geometry = new THREE.SphereGeometry(1, 32, 32);
-let material = new THREE.MeshStandardMaterial({ color:0x4488ff, emissive:0x112244 });
-let planet = new THREE.Mesh(geometry, material);
-scene3D.add(planet);
-
-let light = new THREE.PointLight(0xffffff, 1.5);
-light.position.set(5,5,5);
-scene3D.add(light);
-
-function animate(){
-  requestAnimationFrame(animate);
-  planet.rotation.y += 0.003;
-  renderer.render(scene3D,camera);
+for(let i=0;i<50;i++){
+  let s=document.createElement("div");
+  s.className="star";
+  s.style.top=Math.random()*100+"%";
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDuration=(1+Math.random()*2)+"s";
+  document.body.appendChild(s);
 }
-animate();
-
-// GANTI ADEGAN OTOMATIS
-function showScene(id){
-  document.querySelectorAll('.scene').forEach(s=>s.style.display='none');
-  document.getElementById(id).style.display='block';
-}
-
-setTimeout(()=>{ showScene('scene1'); }, 3000);
-setTimeout(()=>{ showScene('scene2'); }, 9000);
-setTimeout(()=>{ showScene('scene3'); }, 15000);
-setTimeout(()=>{ showScene('scene4'); }, 21000);
 </script>
+
+<!-- METEOR -->
+<div class="meteor"></div>
+
+<!-- TITLE -->
+<div class="title">Kisah Si Cimot by Itrah ✨</div>
+
+<!-- CIMOT -->
+<div class="cimot"></div>
+
+<!-- IPIT -->
+<div class="ipit"></div>
 
 </body>
 </html>
