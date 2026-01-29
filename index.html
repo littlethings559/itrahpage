@@ -3,149 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perjalanan Menuju Bintang ✨</title>
-
+<title>Untuk Itrah ✨</title>
 <style>
 body {
   margin: 0;
   overflow: hidden;
+  background: radial-gradient(circle at bottom, #050510, #000000 70%);
   font-family: 'Segoe UI', sans-serif;
   color: white;
   text-align: center;
-  transition: background 2s;
-  background: radial-gradient(circle at bottom, #0d0d2b, #000010 70%);
+}
+
+.stars, .twinkling, .nebula {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.stars {
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  animation: moveStars 200s linear infinite;
+}
+
+.twinkling {
+  background: url("https://www.transparenttextures.com/patterns/dark-matter.png");
+  animation: moveTwinkle 120s linear infinite;
+}
+
+.nebula {
+  background: radial-gradient(circle at 30% 40%, rgba(120,0,255,0.25), transparent 40%),
+              radial-gradient(circle at 70% 60%, rgba(0,150,255,0.25), transparent 40%);
+  animation: pulse 12s ease-in-out infinite alternate;
+}
+
+@keyframes moveStars {
+  from {background-position: 0 0;}
+  to {background-position: -10000px 5000px;}
+}
+
+@keyframes moveTwinkle {
+  from {background-position: 0 0;}
+  to {background-position: 8000px -4000px;}
+}
+
+@keyframes pulse {
+  from {opacity: 0.4;}
+  to {opacity: 0.9;}
+}
+
+.content {
+  position: relative;
+  top: 35%;
+  transform: translateY(-50%);
+  padding: 20px;
+  animation: fadeIn 3s ease forwards;
 }
 
 h1 {
-  margin-top: 20vh;
   font-size: 3em;
-  transition: 1s;
+  text-shadow: 0 0 20px #a855f7, 0 0 40px #7c3aed;
 }
 
 p {
   font-size: 1.3em;
-  width: 80%;
-  margin: 20px auto;
-  transition: 1s;
+  max-width: 600px;
+  margin: auto;
+  opacity: 0;
+  animation: fadeText 4s ease forwards 2s;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-40%);}
+  to {opacity: 1; transform: translateY(-50%);}
+}
+
+@keyframes fadeText {
+  to {opacity: 1;}
 }
 
 button {
-  padding: 15px 30px;
+  margin-top: 30px;
+  padding: 12px 25px;
   font-size: 1em;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(45deg, #6a5acd, #00bfff);
+  background: linear-gradient(45deg, #9333ea, #06b6d4);
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 20px #6a5acd;
+  box-shadow: 0 0 15px #9333ea;
   transition: 0.3s;
 }
-button:hover { transform: scale(1.1); }
 
-/* Bintang kecil */
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  animation: twinkle 2s infinite alternate;
-}
-@keyframes twinkle { from {opacity:.2;} to {opacity:1;} }
-
-/* Planet */
-.planet {
-  position: absolute;
-  border-radius: 50%;
-  box-shadow: inset -20px -20px 40px rgba(0,0,0,0.5),
-              0 0 40px rgba(255,255,255,0.3);
-  animation: floatPlanet linear infinite;
-  opacity: 0.9;
-}
-@keyframes floatPlanet {
-  from { transform: translateX(-200px) translateY(0); }
-  to { transform: translateX(120vw) translateY(-100px); }
-}
-
-/* Bintang jatuh */
-.shoot {
-  position: absolute;
-  width: 2px;
-  height: 80px;
-  background: linear-gradient(white, transparent);
-  transform: rotate(45deg);
-  animation: shoot 1s linear forwards;
-}
-@keyframes shoot {
-  from { opacity: 1; }
-  to { transform: translate(300px, 300px) rotate(45deg); opacity: 0; }
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #06b6d4;
 }
 </style>
 </head>
-
 <body>
 
-<h1 id="judul">Kamu Sedang Memasuki Alam Semesta 🌌</h1>
-<p id="teks">Tarik napas perlahan… perjalananmu menembus galaksi baru saja dimulai.</p>
-<button onclick="lanjut()">Jelajahi Lebih Dalam 🚀</button>
+<div class="stars"></div>
+<div class="twinkling"></div>
+<div class="nebula"></div>
+
+<div class="content">
+  <h1>Itrah, Kamu Cahaya di Alam Semesta ✨</h1>
+  <p>
+    Di antara miliaran galaksi, ada satu energi yang paling indah...  
+    semangatmu, kebaikanmu, dan kekuatan hatimu.  
+    Dunia lebih terang karena kamu ada di dalamnya.
+  </p>
+  <button onclick="lanjut()">Masuk Lebih Dalam 🚀</button>
+</div>
 
 <script>
-let tahap = 0;
-
-function lanjut(){
-  const judul = document.getElementById("judul");
-  const teks = document.getElementById("teks");
-
-  tahap++;
-
-  if(tahap === 1){
-    document.body.style.background = "radial-gradient(circle at top, #1a1a40, #000)";
-    judul.innerHTML = "Kamu Mengambang di Antara Bintang ✨";
-    teks.innerHTML = "Semua beban perlahan tertinggal jauh di belakangmu.";
-  }
-  else if(tahap === 2){
-    document.body.style.background = "radial-gradient(circle, #000428, #004e92)";
-    judul.innerHTML = "Melintasi Galaksi Tak Terbatas 🌠";
-    teks.innerHTML = "Setiap cahaya di kejauhan adalah harapan yang menunggumu.";
-  }
-  else if(tahap === 3){
-    document.body.style.background = "radial-gradient(circle, #20002c, #cbb4d4)";
-    judul.innerHTML = "Dunia Baru Menunggumu 🌍";
-    teks.innerHTML = "Perjalananmu belum selesai. Hal indah masih ada di depan.";
-  }
+function lanjut() {
+  document.querySelector(".content").innerHTML = `
+    <h1>Kamu Berharga 💫</h1>
+    <p>
+      Kalau hari ini terasa berat, ingat…  
+      bahkan bintang pun butuh gelap untuk bisa bersinar.  
+      Kamu sedang tumbuh jadi versi paling kuat dari dirimu.
+    </p>
+    <button onclick="akhir()">Lanjut Lagi ✨</button>
+  `;
 }
 
-// ⭐ Bintang kecil
-for(let i=0;i<150;i++){
-  let s=document.createElement("div");
-  s.className="star";
-  s.style.top=Math.random()*window.innerHeight+"px";
-  s.style.left=Math.random()*window.innerWidth+"px";
-  document.body.appendChild(s);
+function akhir() {
+  document.querySelector(".content").innerHTML = `
+    <h1>Terus Bersinar, Itrah 🌌</h1>
+    <p>
+      Semesta tidak pernah salah menaruh jiwa sekuat kamu di dunia ini.  
+      Jalanmu masih panjang, dan banyak keajaiban menunggumu.
+    </p>
+  `;
 }
-
-// 🪐 Planet
-const warnaPlanet=["#ff8c00","#6a5acd","#00bfff","#ff69b4"];
-for(let i=0;i<4;i++){
-  let p=document.createElement("div");
-  p.className="planet";
-  let ukuran=60+Math.random()*100;
-  p.style.width=ukuran+"px";
-  p.style.height=ukuran+"px";
-  p.style.background=warnaPlanet[Math.floor(Math.random()*warnaPlanet.length)];
-  p.style.top=Math.random()*window.innerHeight+"px";
-  p.style.animationDuration=(30+Math.random()*20)+"s";
-  document.body.appendChild(p);
-}
-
-// 🌠 Bintang jatuh
-setInterval(()=>{
-  let s=document.createElement("div");
-  s.className="shoot";
-  s.style.left=Math.random()*window.innerWidth+"px";
-  s.style.top=Math.random()*window.innerHeight/2+"px";
-  document.body.appendChild(s);
-  setTimeout(()=>{s.remove();},1000);
-},2000);
 </script>
 
 </body>
