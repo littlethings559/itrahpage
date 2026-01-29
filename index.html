@@ -4,164 +4,107 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kisah Si Cimot by Itrah</title>
-
 <style>
 body {
   margin: 0;
   overflow: hidden;
-  background: radial-gradient(circle at bottom, #0b0f2a 0%, #000 70%);
+  background: #000;
   font-family: 'Segoe UI', sans-serif;
   color: white;
 }
 
-/* NEBULA BACKGROUND */
-.nebula {
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  background: url("https://i.imgur.com/9QZ7Z6F.png") center/cover no-repeat;
-  opacity: 0.35;
-  animation: nebulaMove 60s linear infinite;
+/* Galaxy background */
+body::before {
+  content:"";
+  position:absolute;
+  width:150%;
+  height:150%;
+  background: url("https://www.pngkit.com/png/detail/6-65751_free-png-space-bright-galaxy-png-images-transparent.png") center/cover no-repeat;
+  opacity: 0.3;
+  transform: translate(-20%, -20%);
 }
 
-@keyframes nebulaMove {
-  from { transform: translateY(0); }
-  to { transform: translateY(-200px); }
-}
-
-/* STARS */
+/* Stars */
 .star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 2s infinite alternate;
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation:twinkle 2s infinite alternate;
 }
+@keyframes twinkle { from{opacity:0.3;} to{opacity:1;} }
 
-@keyframes twinkle {
-  from { opacity: 0.2; }
-  to { opacity: 1; }
-}
-
-/* PLANETS */
+/* Planet */
 .planet {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background-size: cover;
-  animation: float 10s ease-in-out infinite alternate;
-  box-shadow: 0 0 30px rgba(255,255,255,0.3);
+  position:absolute;
+  width:120px;
+  height:120px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  animation:float 10s ease-in-out infinite alternate;
 }
+@keyframes float { from{transform:translateY(0);} to{transform:translateY(-15px);} }
 
-/* FLOATING ANIMATION */
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-15px); }
-}
-
-/* TITLE */
+/* Title */
 .title {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  top: 30%;
-  font-size: 2em;
-  letter-spacing: 2px;
-  text-shadow: 0 0 20px #fff;
-  opacity: 0;
-  animation: fadeInTitle 4s forwards;
+  position:absolute;
+  width:100%;
+  text-align:center;
+  top:30%;
+  font-size:2em;
+  text-shadow:0 0 20px #fff;
+  animation:fadeIn 3s ease forwards;
 }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
 
-@keyframes fadeInTitle {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ADEGAN CIMOT */
+/* Cimot */
 .cimot {
-  position: absolute;
-  width: 100px;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: url("https://i.imgur.com/L5Yw3UV.png") center/contain no-repeat;
-  height: 100px;
-  opacity: 0;
-  animation: showCimot 2s forwards 5s; /* muncul 5 detik */
+  position:absolute;
+  width:100px;
+  bottom:10%;
+  left:50%;
+  transform:translateX(-50%);
+  background:url("https://www.pikpng.com/pngvi/wwoTxi_free-png-download-black-cat-png-images-background/") center/contain no-repeat;
+  height:100px;
+  opacity:0;
+  animation:show 2s forwards 5s;
 }
 
-@keyframes showCimot {
-  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
-/* BURUNG IPIT */
+/* Ipit */
 .ipit {
-  position: absolute;
-  width: 60px;
-  bottom: 20%;
-  left: 70%;
-  transform: translateX(-50%);
-  background: url("https://i.imgur.com/eZkTxQx.png") center/contain no-repeat;
-  height: 60px;
-  opacity: 0;
-  animation: showIpit 2s forwards 8s; /* muncul 8 detik */
+  position:absolute;
+  width:60px;
+  bottom:20%;
+  left:70%;
+  transform:translateX(-50%);
+  background:url("https://pngset.com/download-free-png-fhgsn") center/contain no-repeat;
+  height:60px;
+  opacity:0;
+  animation:show 2s forwards 8s;
 }
 
-@keyframes showIpit {
-  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
-/* METEOR */
-.meteor {
-  position: absolute;
-  width: 2px;
-  height: 50px;
-  background: linear-gradient(white, transparent);
-  transform: rotate(45deg);
-  animation: meteorFall 5s linear infinite;
-}
-
-@keyframes meteorFall {
-  from { top: -60px; left: 80%; opacity: 1; }
-  to { top: 100%; left: 20%; opacity: 0; }
-}
-
+@keyframes show { from{opacity:0;} to{opacity:1;} }
 </style>
 </head>
 <body>
 
-<div class="nebula"></div>
-
-<!-- PLANETS -->
-<div class="planet" style="top:10%; left:15%; background-image:url('https://i.imgur.com/6X4KQ8K.jpg');"></div>
-<div class="planet" style="top:50%; left:70%; width:100px; height:100px; background-image:url('https://i.imgur.com/4iQZ6kG.jpg'); animation-duration:12s;"></div>
-
-<!-- STARS -->
 <script>
-for(let i=0;i<50;i++){
+for(let i=0; i<50; i++){
   let s=document.createElement("div");
   s.className="star";
   s.style.top=Math.random()*100+"%";
   s.style.left=Math.random()*100+"%";
-  s.style.animationDuration=(1+Math.random()*2)+"s";
   document.body.appendChild(s);
 }
 </script>
 
-<!-- METEOR -->
-<div class="meteor"></div>
+<div class="planet" style="top:10%; left:15%; background-image:url('https://toppng.com/free-image/planet-png-PNG-free-PNG-Images_135871');"></div>
+<div class="planet" style="top:60%; left:70%; width:100px; height:100px; background-image:url('https://toppng.com/free-image/planet-png-PNG-free-PNG-Images_135862'); animation-duration:12s;"></div>
 
-<!-- TITLE -->
-<div class="title">Kisah Si Cimot by Itrah ✨</div>
+<div class="title">✨ Kisah Si Cimot by Itrah ✨</div>
 
-<!-- CIMOT -->
 <div class="cimot"></div>
-
-<!-- IPIT -->
 <div class="ipit"></div>
 
 </body>
