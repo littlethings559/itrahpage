@@ -3,141 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untuk Itrah ✨</title>
+<title>Kisah Si Cimot by Itrah</title>
 <style>
-body {
-  margin: 0;
-  overflow: hidden;
-  background: radial-gradient(circle at bottom, #050510, #000000 70%);
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  text-align: center;
-}
+body { margin:0; overflow:hidden; background:black; font-family:sans-serif; color:white; }
 
-.stars, .twinkling, .nebula {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.stars {
-  background: url("https://www.transparenttextures.com/patterns/stardust.png");
-  animation: moveStars 200s linear infinite;
-}
-
-.twinkling {
-  background: url("https://www.transparenttextures.com/patterns/dark-matter.png");
-  animation: moveTwinkle 120s linear infinite;
-}
-
+/* Nebula galaksi */
 .nebula {
-  background: radial-gradient(circle at 30% 40%, rgba(120,0,255,0.25), transparent 40%),
-              radial-gradient(circle at 70% 60%, rgba(0,150,255,0.25), transparent 40%);
-  animation: pulse 12s ease-in-out infinite alternate;
+  position:absolute;
+  width:200%; height:200%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(120,0,255,0.25), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(0,200,255,0.2), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(255,0,150,0.2), transparent 40%);
+  animation: nebulaMove 60s linear infinite alternate;
+  z-index:0;
+}
+@keyframes nebulaMove {
+  from { transform: translate(-10%, -10%) scale(1); }
+  to { transform: translate(-20%, -15%) scale(1.2); }
 }
 
-@keyframes moveStars {
-  from {background-position: 0 0;}
-  to {background-position: -10000px 5000px;}
+/* Kotak teks */
+#textBox {
+  position:absolute;
+  top:50%; width:100%;
+  text-align:center;
+  transform:translateY(-50%);
+  z-index:3;
+  animation:fadeIn 3s ease forwards;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+/* Area adegan */
+.scene {
+  position:absolute;
+  width:100%; height:100%;
+  display:none;
+  z-index:2;
 }
 
-@keyframes moveTwinkle {
-  from {background-position: 0 0;}
-  to {background-position: 8000px -4000px;}
+/* Kasur bulat biru */
+.bed {
+  width:160px; height:160px;
+  background: radial-gradient(circle, #3b82f6, #1e3a8a);
+  border-radius:50%;
+  position:absolute;
+  bottom:15%; left:20%;
+  box-shadow:0 0 20px #60a5fa;
 }
 
-@keyframes pulse {
-  from {opacity: 0.4;}
-  to {opacity: 0.9;}
+/* Cimot (kucing) */
+.cat {
+  width:80px; height:80px;
+  background:linear-gradient(135deg, white, #bbb, #333);
+  border-radius:50% 50% 45% 45%;
+  position:absolute;
+  bottom:22%; left:23%;
+}
+.cat::before,.cat::after{
+  content:''; position:absolute; width:20px; height:20px;
+  background:inherit; border-radius:50%; top:-10px;
+}
+.cat::before{left:10px} .cat::after{right:10px}
+
+/* Itrah */
+.itrah {
+  position:absolute;
+  bottom:18%; right:20%;
+  width:70px; height:120px;
+  background:linear-gradient(#fce7f3,#f9a8d4);
+  border-radius:35px;
+}
+.itrah::before {
+  content:'';
+  position:absolute;
+  width:70px; height:50px;
+  background:#fbcfe8;
+  border-radius:50%;
+  top:-30px;
 }
 
-.content {
-  position: relative;
-  top: 35%;
-  transform: translateY(-50%);
-  padding: 20px;
-  animation: fadeIn 3s ease forwards;
+/* Burung kecil */
+.bird-baby {
+  width:30px; height:30px;
+  background:#a16207;
+  border-radius:50%;
+  position:absolute;
+  bottom:28%; right:26%;
 }
 
-h1 {
-  font-size: 3em;
-  text-shadow: 0 0 20px #a855f7, 0 0 40px #7c3aed;
+/* Burung dewasa */
+.bird {
+  width:40px; height:40px;
+  background:linear-gradient(#8b5e3c,#fff);
+  border-radius:50%;
+  position:absolute;
+  bottom:40%; left:50%;
+  animation: fly 3s ease-in-out infinite alternate;
 }
-
-p {
-  font-size: 1.3em;
-  max-width: 600px;
-  margin: auto;
-  opacity: 0;
-  animation: fadeText 4s ease forwards 2s;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-40%);}
-  to {opacity: 1; transform: translateY(-50%);}
-}
-
-@keyframes fadeText {
-  to {opacity: 1;}
-}
-
-button {
-  margin-top: 30px;
-  padding: 12px 25px;
-  font-size: 1em;
-  border: none;
-  border-radius: 30px;
-  background: linear-gradient(45deg, #9333ea, #06b6d4);
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 15px #9333ea;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px #06b6d4;
-}
+@keyframes fly { from{transform:translateY(0)} to{transform:translateY(-20px)} }
 </style>
 </head>
 <body>
 
-<div class="stars"></div>
-<div class="twinkling"></div>
 <div class="nebula"></div>
 
-<div class="content">
-  <h1>Itrah, Kamu Cahaya di Alam Semesta ✨</h1>
-  <p>
-    Di antara miliaran galaksi, ada satu energi yang paling indah...  
-    semangatmu, kebaikanmu, dan kekuatan hatimu.  
-    Dunia lebih terang karena kamu ada di dalamnya.
-  </p>
-  <button onclick="lanjut()">Masuk Lebih Dalam 🚀</button>
+<div id="textBox">
+  <h1>✨ Kisah Si Cimot by Itrah ✨</h1>
+  <p>Sebuah cerita hangat di sudut kecil alam semesta…</p>
 </div>
 
+<!-- ADEGAN 1: Cimot tidur -->
+<div id="scene1" class="scene">
+  <div class="bed"></div>
+  <div class="cat"></div>
+</div>
+
+<!-- ADEGAN 2: Itrah & bayi burung -->
+<div id="scene2" class="scene">
+  <div class="itrah"></div>
+  <div class="bird-baby"></div>
+  <div class="cat" style="left:40%; bottom:22%;"></div>
+</div>
+
+<!-- ADEGAN 3: Burung dewasa -->
+<div id="scene3" class="scene">
+  <div class="cat" style="left:30%; bottom:20%;"></div>
+  <div class="itrah" style="right:25%;"></div>
+  <div class="bird"></div>
+</div>
+
+<!-- ADEGAN 4: Ending -->
+<div id="scene4" class="scene">
+  <div id="textBox" style="top:55%;">
+    <h1>Persahabatan Mereka Tumbuh Bersama 💫</h1>
+    <p>Cimot, Ipit, dan Itrah menjalani hari dengan cinta dan tawa.</p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-function lanjut() {
-  document.querySelector(".content").innerHTML = `
-    <h1>Kamu Berharga 💫</h1>
-    <p>
-      Kalau hari ini terasa berat, ingat…  
-      bahkan bintang pun butuh gelap untuk bisa bersinar.  
-      Kamu sedang tumbuh jadi versi paling kuat dari dirimu.
-    </p>
-    <button onclick="akhir()">Lanjut Lagi ✨</button>
-  `;
+let scene3D = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+let renderer = new THREE.WebGLRenderer({ alpha:true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+camera.position.z = 5;
+
+let geometry = new THREE.SphereGeometry(1, 32, 32);
+let material = new THREE.MeshStandardMaterial({ color:0x4488ff, emissive:0x112244 });
+let planet = new THREE.Mesh(geometry, material);
+scene3D.add(planet);
+
+let light = new THREE.PointLight(0xffffff, 1.5);
+light.position.set(5,5,5);
+scene3D.add(light);
+
+function animate(){
+  requestAnimationFrame(animate);
+  planet.rotation.y += 0.003;
+  renderer.render(scene3D,camera);
+}
+animate();
+
+// GANTI ADEGAN OTOMATIS
+function showScene(id){
+  document.querySelectorAll('.scene').forEach(s=>s.style.display='none');
+  document.getElementById(id).style.display='block';
 }
 
-function akhir() {
-  document.querySelector(".content").innerHTML = `
-    <h1>Terus Bersinar, Itrah 🌌</h1>
-    <p>
-      Semesta tidak pernah salah menaruh jiwa sekuat kamu di dunia ini.  
-      Jalanmu masih panjang, dan banyak keajaiban menunggumu.
-    </p>
-  `;
-}
+setTimeout(()=>{ showScene('scene1'); }, 3000);
+setTimeout(()=>{ showScene('scene2'); }, 9000);
+setTimeout(()=>{ showScene('scene3'); }, 15000);
+setTimeout(()=>{ showScene('scene4'); }, 21000);
 </script>
 
 </body>
