@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galaxy Journey ✨</title>
+<title>Perjalanan Menuju Bintang ✨</title>
 
 <style>
 body {
@@ -19,14 +19,14 @@ body {
 h1 {
   margin-top: 20vh;
   font-size: 3em;
-  transition: opacity 1s;
+  transition: 1s;
 }
 
 p {
   font-size: 1.3em;
   width: 80%;
   margin: 20px auto;
-  transition: opacity 1s;
+  transition: 1s;
 }
 
 button {
@@ -42,6 +42,7 @@ button {
 }
 button:hover { transform: scale(1.1); }
 
+/* Bintang kecil */
 .star {
   position: absolute;
   width: 2px;
@@ -50,42 +51,70 @@ button:hover { transform: scale(1.1); }
   animation: twinkle 2s infinite alternate;
 }
 @keyframes twinkle { from {opacity:.2;} to {opacity:1;} }
+
+/* Planet */
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: inset -20px -20px 40px rgba(0,0,0,0.5),
+              0 0 40px rgba(255,255,255,0.3);
+  animation: floatPlanet linear infinite;
+  opacity: 0.9;
+}
+@keyframes floatPlanet {
+  from { transform: translateX(-200px) translateY(0); }
+  to { transform: translateX(120vw) translateY(-100px); }
+}
+
+/* Bintang jatuh */
+.shoot {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(white, transparent);
+  transform: rotate(45deg);
+  animation: shoot 1s linear forwards;
+}
+@keyframes shoot {
+  from { opacity: 1; }
+  to { transform: translate(300px, 300px) rotate(45deg); opacity: 0; }
+}
 </style>
 </head>
 
 <body>
 
-<h1 id="title">You Are Entering the Universe 🌌</h1>
-<p id="text">Take a deep breath… your journey through the stars begins now.</p>
-<button onclick="nextStage()">Go Deeper 🚀</button>
+<h1 id="judul">Kamu Sedang Memasuki Alam Semesta 🌌</h1>
+<p id="teks">Tarik napas perlahan… perjalananmu menembus galaksi baru saja dimulai.</p>
+<button onclick="lanjut()">Jelajahi Lebih Dalam 🚀</button>
 
 <script>
-let stage = 0;
+let tahap = 0;
 
-function nextStage(){
-  const title = document.getElementById("title");
-  const text = document.getElementById("text");
+function lanjut(){
+  const judul = document.getElementById("judul");
+  const teks = document.getElementById("teks");
 
-  stage++;
+  tahap++;
 
-  if(stage === 1){
+  if(tahap === 1){
     document.body.style.background = "radial-gradient(circle at top, #1a1a40, #000)";
-    title.innerHTML = "Floating Among the Stars ✨";
-    text.innerHTML = "You are leaving your worries behind, drifting into calm space.";
+    judul.innerHTML = "Kamu Mengambang di Antara Bintang ✨";
+    teks.innerHTML = "Semua beban perlahan tertinggal jauh di belakangmu.";
   }
-  else if(stage === 2){
+  else if(tahap === 2){
     document.body.style.background = "radial-gradient(circle, #000428, #004e92)";
-    title.innerHTML = "Crossing the Galaxy 🌠";
-    text.innerHTML = "Every light you see is a possibility waiting for you.";
+    judul.innerHTML = "Melintasi Galaksi Tak Terbatas 🌠";
+    teks.innerHTML = "Setiap cahaya di kejauhan adalah harapan yang menunggumu.";
   }
-  else if(stage === 3){
+  else if(tahap === 3){
     document.body.style.background = "radial-gradient(circle, #20002c, #cbb4d4)";
-    title.innerHTML = "A New World Awaits 🌍";
-    text.innerHTML = "You made it this far. Imagine how far you can still go.";
+    judul.innerHTML = "Dunia Baru Menunggumu 🌍";
+    teks.innerHTML = "Perjalananmu belum selesai. Hal indah masih ada di depan.";
   }
 }
 
-// Stars generator
+// ⭐ Bintang kecil
 for(let i=0;i<150;i++){
   let s=document.createElement("div");
   s.className="star";
@@ -93,6 +122,30 @@ for(let i=0;i<150;i++){
   s.style.left=Math.random()*window.innerWidth+"px";
   document.body.appendChild(s);
 }
+
+// 🪐 Planet
+const warnaPlanet=["#ff8c00","#6a5acd","#00bfff","#ff69b4"];
+for(let i=0;i<4;i++){
+  let p=document.createElement("div");
+  p.className="planet";
+  let ukuran=60+Math.random()*100;
+  p.style.width=ukuran+"px";
+  p.style.height=ukuran+"px";
+  p.style.background=warnaPlanet[Math.floor(Math.random()*warnaPlanet.length)];
+  p.style.top=Math.random()*window.innerHeight+"px";
+  p.style.animationDuration=(30+Math.random()*20)+"s";
+  document.body.appendChild(p);
+}
+
+// 🌠 Bintang jatuh
+setInterval(()=>{
+  let s=document.createElement("div");
+  s.className="shoot";
+  s.style.left=Math.random()*window.innerWidth+"px";
+  s.style.top=Math.random()*window.innerHeight/2+"px";
+  document.body.appendChild(s);
+  setTimeout(()=>{s.remove();},1000);
+},2000);
 </script>
 
 </body>
