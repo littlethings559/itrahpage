@@ -1,175 +1,105 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untuk Kamu ?</title>
-<style>
-body {
-  margin: 0;
-  overflow: hidden;
-  background: radial-gradient(circle at center, #05070d, #000);
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  text-align: center;
-}
+  <meta charset="UTF-8" />
+  < title>Untuk Kamu 🤍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-/* CANVAS BACKGROUND */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
-/* KONTEN TEKS */
-.content {
-  position: relative;
-  z-index: 2;
-  top: 25vh;
-  padding: 20px;
-  animation: fadeIn 3s ease forwards;
-}
-
-h1 {
-  font-size: 2.2em;
-  margin-bottom: 20px;
-  text-shadow: 0 0 15px #fff, 0 0 30px #6cf;
-}
-
-p {
-  font-size: 1.2em;
-  max-width: 650px;
-  margin: 15px auto;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* NEBULA GLOW */
-.nebula {
-  position: fixed;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(120,150,255,0.15), transparent 60%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  filter: blur(60px);
-  z-index: 1;
-  animation: pulse 8s infinite alternate;
-}
-
-@keyframes pulse {
-  from {transform: translate(-50%, -50%) scale(1);}
-  to {transform: translate(-50%, -50%) scale(1.3);}
-}
-</style>
-</head>
-<body>
-
-<canvas id="space"></canvas>
-<div class="nebula"></div>
-
-<div class="content">
-  <h1>Hai kamu� ??</h1>
-  <p id="t1"></p>
-  <p id="t2"></p>
-  <p id="t3"></p>
-</div>
-
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-const canvas = document.getElementById("space");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let stars = [];
-for (let i = 0; i < 250; i++) {
-  stars.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    z: Math.random() * canvas.width
-  });
-}
-
-function drawStars() {
-  ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "white";
-
-  stars.forEach(s => {
-    s.z -= 2;
-    if (s.z <= 0) s.z = canvas.width;
-
-    let k = 128.0 / s.z;
-    let px = s.x * k + canvas.width / 2;
-    let py = s.y * k + canvas.height / 2;
-
-    if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
-      let size = (1 - s.z / canvas.width) * 3;
-      ctx.beginPath();
-      ctx.arc(px, py, size, 0, Math.PI * 2);
-      ctx.fill();
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
     }
-  });
 
-  requestAnimationFrame(drawStars);
-}
-drawStars();
+    body {
+      height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #1a1a40, #000010);
+      color: white;
+    }
 
-/* TEXT TYPING EFFECT */
-function typeText(id, text, delay) {
-  let i = 0;
-  setTimeout(() => {
-    const el = document.getElementById(id);
-    el.style.opacity = 1;
-    const typing = setInterval(() => {
-      el.innerHTML += text.charAt(i);
-      i++;
-      if (i >= text.length) clearInterval(typing);
-    }, 40);
-  }, delay);
-}
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, white, transparent),
+        radial-gradient(1px 1px at 40px 70px, white, transparent),
+        radial-gradient(1px 1px at 90px 40px, white, transparent),
+        radial-gradient(1px 1px at 130px 80px, white, transparent);
+      background-size: 200px 200px;
+      animation: moveStars 60s linear infinite;
+    }
 
-typeText("t1", "Aku tahu kamu lagi capek� dunia kadang terasa berat.", 2000);
-typeText("t2", "Tapi lihat sejauh apa kamu sudah berjalan. Kamu luar biasa.", 7000);
-typeText("t3", "Terima kasih sudah bertahan sampai hari ini ?", 13000);
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-200px); }
+    }
 
-/* PARTICLE BURST ON CLICK */
-document.body.addEventListener("click", e => {
-  for (let i = 0; i < 40; i++) {
-    let div = document.createElement("div");
-    div.style.position = "fixed";
-    div.style.left = e.clientX + "px";
-    div.style.top = e.clientY + "px";
-    div.style.width = "6px";
-    div.style.height = "6px";
-    div.style.background = "white";
-    div.style.borderRadius = "50%";
-    div.style.pointerEvents = "none";
-    div.style.zIndex = 3;
-    document.body.appendChild(div);
+    .container {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 3s ease;
+    }
 
-    let angle = Math.random() * 2 * Math.PI;
-    let distance = Math.random() * 120;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    div.animate([
-      {transform: "translate(0,0)", opacity: 1},
-      {transform: `translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px)`, opacity: 0}
-    ], {duration: 1000, easing: "ease-out"});
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
 
-    setTimeout(() => div.remove(), 1000);
-  }
-});
-</script>
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #7f9cff; }
+      to { text-shadow: 0 0 25px #c3d1ff; }
+    }
 
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: textIn 2s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes textIn {
+      to { opacity: 1; }
+    }
+
+    .hint {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+
+  <div class="container">
+    <h1>Kamu Masih Berharga 🌌</h1>
+    <p>
+      Kalau hari ini terasa berat, itu bukan karena kamu lemah.  
+      Tapi karena kamu sudah bertahan sejauh ini.  
+      Pelan-pelan ya…  
+      Semesta belum selesai sama kamu 🤍
+    </p>
+    <div class="hint">tarik napas… hembuskan…</div>
+  </div>
 </body>
 </html>
